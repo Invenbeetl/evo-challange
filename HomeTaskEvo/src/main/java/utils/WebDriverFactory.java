@@ -4,8 +4,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 
 /**
@@ -14,8 +12,6 @@ import org.testng.Assert;
 public class WebDriverFactory {
 
     public static WebDriverWrapper driverWrapper;
-    private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
-
 
     /*Browsers constants*/
     private static final String FIREFOX = "firefox";

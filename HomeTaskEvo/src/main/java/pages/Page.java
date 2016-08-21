@@ -65,20 +65,5 @@ public abstract class Page {
         return false;
     }
 
-    /*
-     * Get page title for verification correct switch between pages
-     */
-    public String getTitle() {
-        return webDriverWrapper.getTitle();
-    }
-
-    public String getCurrentPageURL() {
-        return webDriverWrapper.getCurrentUrl();
-    }
-
-    public void deleteAllCookies() {
-        webDriverWrapper.manage().deleteAllCookies();
-    }
-
 
 }

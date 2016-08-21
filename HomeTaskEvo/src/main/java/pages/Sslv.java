@@ -1,6 +1,5 @@
 package pages;
 
-import utils.ScreenShotMaker;
 import utils.WebDriverWrapper;
 import utils.WebElementsActions;
 
@@ -13,7 +12,6 @@ public class Sslv {
     public ElectronicsPage electronicsPage;
     public ElectronicsSearchPage electronicsSearchPage;
     public SearchResultPage searchResultPage;
-    public ScreenShotMaker screenShotMaker;
 
 
     public Sslv(WebDriverWrapper driver) {
@@ -23,6 +21,5 @@ public class Sslv {
         electronicsPage = new ElectronicsPage(driver);
         electronicsSearchPage = new ElectronicsSearchPage(driver);
         searchResultPage = new SearchResultPage(driver);
-        screenShotMaker = new ScreenShotMaker(driver);
     }
 }

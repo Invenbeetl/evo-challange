@@ -25,11 +25,6 @@ public class WebDriverWrapper implements WebDriver, TakesScreenshot{
     }
 
 
-    public WebDriver getOriginalDriver(){
-        return this.driver;
-    }
-
-
     @Override
     public void get(String s) {
         driver.get(s);
@@ -119,24 +114,4 @@ public class WebDriverWrapper implements WebDriver, TakesScreenshot{
         return null;
     }
 
-//    JavascriptExecutor Methods
-/*    @Override
-    public Object executeScript(String script, Object... args) {
-        WebDriver driver = getWrappedDriver();
-        if (driver instanceof JavascriptExecutor) {
-            return wrapObject(((JavascriptExecutor) driver).executeScript(script, args));
-        } else {
-            throw new WebDriverException("Wrapped webdriver does not support JavascriptExecutor: " + driver);
-        }
-    }
-
-    @Override
-    public Object executeAsyncScript(String script, Object... args) {
-        WebDriver driver = getWrappedDriver();
-        if (driver instanceof JavascriptExecutor) {
-            return wrapObject(((JavascriptExecutor) driver).executeAsyncScript(script, args));
-        } else {
-            throw new WebDriverException("Wrapped webdriver does not support JavascriptExecutor: " + driver);
-        }
-    }*/
 }

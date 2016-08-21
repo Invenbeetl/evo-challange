@@ -13,7 +13,6 @@ public class PropertyLoader {
 
     private static final String PROPERTY_FILE = "/application.properties";
 
-    private static Map propertiesMap;
 
     public static String loadProperty(String name) {
         Properties props = new Properties();

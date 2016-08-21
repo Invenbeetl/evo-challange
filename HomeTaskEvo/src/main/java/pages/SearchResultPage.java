@@ -36,9 +36,6 @@ public class SearchResultPage extends Page {
         log.info("Advanced search link is clicked");
     }
 
-
-
-
     public void checkEqualityOfSelectedAndDisplayedItems(int numberOfItems){
         ArrayList<String> listOfSelectedItems = selectItemsFromResultList(numberOfItems);
         showSelectedItems();
@@ -46,12 +43,7 @@ public class SearchResultPage extends Page {
 
     }
 
-
-
-
-
-
-
+//    Select items by marking checkboxes. Method return ArrayList with IDs of selected items
     public ArrayList<String> selectItemsFromResultList(int numberOfItems) {
         List<WebElement> listOfResultItems = web.getElements("SearchResultItems");
         ArrayList<String> listOfSelectedIDs = new ArrayList<>();
@@ -73,11 +65,11 @@ public class SearchResultPage extends Page {
     }
 
     public void showSelectedItems() {
-        log.info("debug");
         web.clickLink("SelectedItemsLink");
         log.info("Switch to Selected results page is performed");
     }
 
+//    Method receive ArrayList with IDs of selected items and check equality between received IDs and shown
     public void checkEqualityOfSelectedAndDisplayedItemsIDs(ArrayList<String> listOfSelectedIDs) {
         List<WebElement> listOfDisplayedItems = web.getElements("FilteredResultItems");
         log.info("----------------"+listOfDisplayedItems.size());
@@ -93,10 +85,8 @@ public class SearchResultPage extends Page {
 
         }
 
-        log.info("---------------- check Displayed IDs " +listOfDisplayedItemsIDs.size());
-        log.info("---------------- check SelectedIDs " +listOfSelectedIDs.size());
 
-        /*Cycle to check presence of displayed item ID in list of selected items ID*/
+        /*Cycle to check presence of displayed item IDs in list of selected item IDs*/
         int counter=0;
         for (int i=0; i < listOfDisplayedItemsIDs.size(); i++){
             for(int j=0; j < listOfSelectedIDs.size(); j++){
