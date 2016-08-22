@@ -11,35 +11,12 @@
     <profiles>
         <!--browsers-->
         <profile>
-            <id>firefox</id>
-            <properties>
-                <browser.name>firefox</browser.name>
-            </properties>
-        </profile>
-        <profile>
             <id>chrome</id>
             <properties>
                 <browser.name>chrome</browser.name>
             </properties>
         </profile>
-        <profile>
-            <id>phantomjs</id>
-            <properties>
-                <browser.name>phantomjs</browser.name>
-            </properties>
-        </profile>
-        <profile>
-            <id>ie</id>
-            <properties>
-                <browser.name>ie</browser.name>
-            </properties>
-        </profile>
-
-        <!--environment-->
-
-        <!--site l+ocations-->
-        <!--etc-->
-    </profiles>
+      </profiles>
 
     <dependencies>
         <dependency>

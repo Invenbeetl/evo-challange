@@ -8,6 +8,7 @@ import utils.WebDriverWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -53,13 +54,19 @@ public class SearchResultPage extends Page {
             log.warn("Result list contains not enough elements");
             throw new IllegalArgumentException();
         }
+//      Cycle to mark item, ensure that item is marked and add ID of item to list of selected IDs
         for (int i = 0; i < numberOfItems; i++){
-            listOfResultItems.get(i).click();
-            web.waitForElementSelected(listOfResultItems.get(i));
-            Assert.assertTrue(listOfResultItems.get(i).isSelected(), "Element "
-                    + listOfResultItems.get(i) +" was not selected from list");
-            log.info("Element " + listOfResultItems.get(i)+ " is selected from result list");
-            listOfSelectedIDs.add(listOfResultItems.get(i).getAttribute("id"));
+            Random random = new Random(System.currentTimeMillis());
+            int idx = random.nextInt(listOfResultItems.size());
+
+            listOfResultItems.get(idx).click();
+            web.waitForElementSelected(listOfResultItems.get(idx));
+            Assert.assertTrue(listOfResultItems.get(idx).isSelected(), "Element "
+                    + listOfResultItems.get(idx) +" was not selected from list");
+            log.info("Element with id " + listOfResultItems.get(idx).getAttribute("id") + " is selected from result list");
+
+//          Using '.remove' to guarantee that even with same idx from '.random.nextInt' we will have unique ID of item
+            listOfSelectedIDs.add(listOfResultItems.remove(idx).getAttribute("id"));
         }
         return listOfSelectedIDs;
     }
@@ -72,7 +79,6 @@ public class SearchResultPage extends Page {
 //    Method receive ArrayList with IDs of selected items and check equality between received IDs and shown
     public void checkEqualityOfSelectedAndDisplayedItemsIDs(ArrayList<String> listOfSelectedIDs) {
         List<WebElement> listOfDisplayedItems = web.getElements("FilteredResultItems");
-        log.info("----------------"+listOfDisplayedItems.size());
         ArrayList<String> listOfDisplayedItemsIDs = new ArrayList<>();
 
         if (listOfDisplayedItems.size() <=0 ||
@@ -80,25 +86,16 @@ public class SearchResultPage extends Page {
             log.warn("Displayed not enough results that were filtered");
             Assert.fail("Amount of displayed result items are not equal to those that were selected");
         }
-        for (int i=0; i<listOfDisplayedItems.size(); i++){
-            listOfDisplayedItemsIDs.add(listOfDisplayedItems.get(i).getAttribute("id"));
 
-        }
+//      Add ID of each displayed element to ArrayList
+        listOfDisplayedItems.forEach(item -> listOfDisplayedItemsIDs.add(item.getAttribute("id")));
 
-
-        /*Cycle to check presence of displayed item IDs in list of selected item IDs*/
-        int counter=0;
-        for (int i=0; i < listOfDisplayedItemsIDs.size(); i++){
-            for(int j=0; j < listOfSelectedIDs.size(); j++){
-                if (listOfDisplayedItemsIDs.get(i).equals(listOfSelectedIDs.get(j))){
-                    counter++;
-                }
-            }
-            if (counter == (i)){
+//      Cycle to check presence of selected items IDs in list of displayed items IDs
+        listOfSelectedIDs.forEach(id->{
+            if (!listOfDisplayedItemsIDs.contains(id)){
                 log.warn("Selected and shown result are different");
                 Assert.fail("Selected items list is differ than displayed items list");
             }
-        }
-
+        });
     }
 }

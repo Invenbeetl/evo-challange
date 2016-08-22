@@ -24,10 +24,7 @@ public class HomeworkTests extends Fixture {
 
         sslv.electronicsSearchPage.changePriceBoundsParameterAndSearch("0", "300");
 
-
         sslv.searchResultPage.checkEqualityOfSelectedAndDisplayedItems(3);
-
-
     }
 
 }
